@@ -45,8 +45,14 @@ int conveyor_mv = 3200 * 3.42; //CONVEYOR BELT TO DEPOSIT PLATFORM WITH FIBRE
 //STEPPER MOTOR FUNCTIONS
 //to stop all motors
 void allStop() {
-  //PORTD = B00000000; //sets all of the pins 0 to 7 as LOW to power off stepper1
-  //PORTB = B00000000; //sets all of the pins 8 to 13 as LOW to power off stepper2
+  /*
+  PORTD = B00000000; //sets all of the pins 0 to 7 as LOW to power off stepper1
+  PORTB = B00000000; //sets all of the pins 8 to 13 as LOW to power off stepper2
+  */
+  for (int i = 2; i < 14; i++)
+  {
+    digitalWrite(i,LOW); //same method, but for pin 2 to 13 as it doesnt affect TX RX
+  }
 }
 
 //to move backwards when positioning platform at the start
