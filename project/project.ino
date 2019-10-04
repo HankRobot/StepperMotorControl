@@ -1,34 +1,16 @@
 #include <AccelStepper.h> //Stepper Motor Library http://www.airspayce.com/mikem/arduino/AccelStepper/classAccelStepper.html#ace236ede35f87c63d18da25810ec9736
 
+//----------------------------------------------------Stepper Motor Variables-------------------------------------------------------------
 //PIN SETTINGS
 AccelStepper myStepper1(1, 2, 3); //Platform Stepper
 AccelStepper myStepper2(1, 4, 5); //Platform Stepper
 AccelStepper myStepper3(1, 6, 7); //Conveyor Belt Stepper
-
-const int conv_butt = 8; //Button for Conveyor Belt
-const int plat_butt = 9; //Button for Platform
-const int x_butt = 10; //Horizontal button for Positioning at the Start
-const int y_butt = 11; //Vertical button for Positioning at the Start
-
-//DIGITAL MODES
-bool pONOFF = false;     //Digital Mode for Platform Button
-bool cONOFF = false;     //Digital Mode for Conveyor Button
-bool xSTART = false;     //Digital Mode for Horizontal Positioning of Platform
-bool ySTART = false;     //Digital Mode for Vertical Positioning of Platform
-
 
 //STEPPER MOTOR SPEEDS
 int s = 200; //Platform Motor Speed
 int c = -115;  //Conveyor Belt Motor Speed
 int startspeed = 3500; //Positioning Speed
 int c_fill = -300; //Speed to fill fibre on conveyor belt
-
-
-//ARBITRARY INCREMENTS (to set conditions)
-int state = 0;        //Increment for Platform Movement DURING RUN
-int countSTART = 0;   //Increment for Platform Movement WHEN REPOSITIONING
-int nick = 1;         //Increment for FRONT TO LEFT Movement
-
 
 //NUMBER OF STEPS
 //3200 steps for 1 full revolution
@@ -41,8 +23,24 @@ int L = 3200 * 2.0; //LEFT
 int R = 3200 * 2.0; //RIGHT
 int conveyor_mv = 3200 * 3.42; //CONVEYOR BELT TO DEPOSIT PLATFORM WITH FIBRE
 
+//-----------------------------------------------------------Buttons----------------------------------------------------------------- 
+const int conv_butt = 8; //Button for Conveyor Belt
+const int plat_butt = 9; //Button for Platform
+const int x_butt = 10; //Horizontal button for Positioning at the Start
+const int y_butt = 11; //Vertical button for Positioning at the Start
 
-//STEPPER MOTOR FUNCTIONS
+//DIGITAL MODES
+bool pONOFF = false;     //Digital Mode for Platform Button
+bool cONOFF = false;     //Digital Mode for Conveyor Button
+bool xSTART = false;     //Digital Mode for Horizontal Positioning of Platform
+bool ySTART = false;     //Digital Mode for Vertical Positioning of Platform
+
+//ARBITRARY INCREMENTS (to set conditions)
+int state = 0;        //Increment for Platform Movement DURING RUN
+int countSTART = 0;   //Increment for Platform Movement WHEN REPOSITIONING
+int nick = 1;         //Increment for FRONT TO LEFT Movement
+
+//----------------------------------------------------STEPPER MOTOR FUNCTIONS---------------------------------------------------------
 //to stop all motors
 void allStop() {
   /*
@@ -124,7 +122,7 @@ void rightStep(int R, int s) {
   myStepper2.run();
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////
+//------------------------------------------------------------Void Setup--------------------------------------------------------------------------------
 
 //run functions once
 void setup() {
@@ -177,9 +175,7 @@ void setup() {
   }
 }
 
-
-
-///////////////////////////////////////////////////////////////////////////////////////////
+//------------------------------------------------------------Void Loop--------------------------------------------------------------------------------
 
 //run functions in a loop
 void loop() {
