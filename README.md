@@ -13,7 +13,8 @@ This project is focused on deploying Dr Gan's carbon fibre machine only on Ardui
 
 # Contribute
 1. project file is not working for some reason, could be driver problem.
+2. stepper shield made by Wei Hong stopped working for unknown reason as well.
 
-#This project was previously done by Wo Yew Ben and Liew Wei Hong, I'm just fixing it.
+#This project was previously done by Wo Yew Ben and Wei Hong, I'm just fixing it.
 
 #HAPPY CODING!!! :heart:
