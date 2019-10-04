@@ -11,7 +11,7 @@ void setup()
   pinMode(dirPin, OUTPUT);
 }
 void loop()
-{
+{                     
   // Set motor direction clockwise
   digitalWrite(dirPin, HIGH);
 
