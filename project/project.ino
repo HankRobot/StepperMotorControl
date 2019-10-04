@@ -10,7 +10,6 @@ const int plat_butt = 9; //Button for Platform
 const int x_butt = 10; //Horizontal button for Positioning at the Start
 const int y_butt = 11; //Vertical button for Positioning at the Start
 
-
 //DIGITAL MODES
 bool pONOFF = false;     //Digital Mode for Platform Button
 bool cONOFF = false;     //Digital Mode for Conveyor Button
