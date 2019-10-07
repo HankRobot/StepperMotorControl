@@ -147,7 +147,7 @@ void setup() {
       xSTART = true;
     }
     if (digitalRead(y_butt) == HIGH) {
-      ySTART = true;
+      ySTART = true;  
     }
   
     while (xSTART == false && ySTART == false) {
