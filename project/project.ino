@@ -104,20 +104,20 @@ void backwardStep(int B, int s) {
 
 // to move the motors in opposite directions (left)
 void leftStep(int L, int s) {
-  myStepper1.moveTo(L);
-  myStepper2.moveTo(L);
-  myStepper1.setSpeed(s);
-  myStepper2.setSpeed(s);
+  myStepper1.moveTo(-L);
+  myStepper2.moveTo(-L);
+  myStepper1.setSpeed(-s);
+  myStepper2.setSpeed(-s);
   myStepper1.run();
   myStepper2.run();
 }
 
 // to move the motors in opposite directions (right)
 void rightStep(int R, int s) {
-  myStepper1.moveTo(-R);
-  myStepper2.moveTo(-R);
-  myStepper1.setSpeed(-s);
-  myStepper2.setSpeed(-s);
+  myStepper1.moveTo(R);
+  myStepper2.moveTo(R);
+  myStepper1.setSpeed(s);
+  myStepper2.setSpeed(s);
   myStepper1.run();
   myStepper2.run();
 }
@@ -177,6 +177,7 @@ void setup() {
 
 //run functions in a loop
 void loop() {
+  rightStep(R, s);
   /*
   if(digitalRead(plat_butt) == LOW){
     rightSTART();
@@ -201,7 +202,7 @@ void loop() {
   
   Serial.println();
   */
-  
+  /*
   if (digitalRead(conv_butt) == LOW) {  
     cONOFF = true;
     //Serial.println("cONOFF = true");
@@ -322,4 +323,5 @@ void loop() {
     cONOFF = false;
     //Serial.println("MISC5");
   }
+  */
 }
