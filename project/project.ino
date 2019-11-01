@@ -7,7 +7,7 @@ AccelStepper myStepper2(1, 4, 5); //Platform Stepper
 AccelStepper myStepper3(1, 6, 7); //Conveyor Belt Stepper
 
 //STEPPER MOTOR SPEEDS
-int s = 200; //Platform Motor Speed
+int s = 500; //Platform Motor Speed
 int c = -115;  //Conveyor Belt Motor Speed
 int startspeed = 3500; //Positioning Speed
 int c_fill = -300; //Speed to fill fibre on conveyor belt
@@ -104,9 +104,9 @@ void backwardStep(int B, int s) {
 
 // to move the motors in opposite directions (left)
 void leftStep(int L, int s) {
-  myStepper1.moveTo(-L);
+  myStepper1.moveTo(L);
   myStepper2.moveTo(L);
-  myStepper1.setSpeed(-s);
+  myStepper1.setSpeed(s);
   myStepper2.setSpeed(s);
   myStepper1.run();
   myStepper2.run();
@@ -114,9 +114,9 @@ void leftStep(int L, int s) {
 
 // to move the motors in opposite directions (right)
 void rightStep(int R, int s) {
-  myStepper1.moveTo(R);
+  myStepper1.moveTo(-R);
   myStepper2.moveTo(-R);
-  myStepper1.setSpeed(s);
+  myStepper1.setSpeed(-s);
   myStepper2.setSpeed(-s);
   myStepper1.run();
   myStepper2.run();
@@ -181,24 +181,24 @@ void setup() {
 //run functions in a loop
 void loop() {
   if(digitalRead(plat_butt) == LOW){
-    forwardStep(F_start, startspeed);
+    leftStep(L, s);
     //Serial.println("Forward");
   }
   else
   {
-    backwardStep(B, startspeed);
+    rightStep(R, s);
     //Serial.println("Backward");
   }
   
   
   //CALLING BUTTON LOGICS
   /*
-  if (digitalRead(conv_butt) == HIGH) {  
+  if (digitalRead(conv_butt) == LOW) {  
     cONOFF = true;
     //Serial.println("cONOFF = true");
   }
 
-  if ( digitalRead(plat_butt) == HIGH ) {
+  if ( digitalRead(plat_butt) == LOW ) {
     pONOFF = true;
     //Serial.println("pONOFF = true");
   }
