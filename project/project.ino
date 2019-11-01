@@ -7,7 +7,7 @@ AccelStepper myStepper2(1, 4, 5); //Platform Stepper
 AccelStepper myStepper3(1, 6, 7); //Conveyor Belt Stepper
 
 //STEPPER MOTOR SPEEDS
-int s = 500; //Platform Motor Speed
+int s = 1000; //Platform Motor Speed
 int c = -115;  //Conveyor Belt Motor Speed
 int startspeed = 3500; //Positioning Speed
 int c_fill = -300; //Speed to fill fibre on conveyor belt
@@ -56,7 +56,7 @@ void allStop() {
 //to move backwards when positioning platform at the start
 void backSTART() {
   myStepper1.setSpeed(-startspeed);
-  myStepper2.setSpeed(-startspeed);
+  myStepper2.setSpeed(startspeed);
   myStepper1.runSpeed();
   myStepper2.runSpeed();
 }
@@ -64,7 +64,7 @@ void backSTART() {
 //to move backwards when positioning platform at the start
 void rightSTART() {
   myStepper1.setSpeed(startspeed);
-  myStepper2.setSpeed(-startspeed);
+  myStepper2.setSpeed(startspeed);
   myStepper1.runSpeed();
   myStepper2.runSpeed();
 }
@@ -142,69 +142,78 @@ void setup() {
   myStepper3.setCurrentPosition(0);
 
   while (countSTART == 0) {
+    //Serial.println(digitalRead(x_butt));
     //CALLING BUTTON LOGICS
-    if (digitalRead(x_butt) == HIGH) {
+    if (digitalRead(x_butt) == LOW) {
       xSTART = true;
     }
-    if (digitalRead(y_butt) == HIGH) {
+    if (digitalRead(y_butt) == LOW) {
       ySTART = true;  
     }
   
-    while (xSTART == false && ySTART == false) {
-      backSTART();   //move downwards to hit bottom button
-      break;
-    }
-
-    while (xSTART == true && ySTART == false) {
+    while (ySTART == false) {
       backSTART();   //move downwards to hit bottom button     
       break;
     }
 
-    while (xSTART == false && ySTART == true) {
+    while (xSTART == false) {
       rightSTART();    //move right to hit right button
       break;
     }
 
-    while (xSTART == true && ySTART == true && countSTART == 0) {
+    while (xSTART == true && ySTART == true) {
       myStepper1.setCurrentPosition(0);
       myStepper2.setCurrentPosition(0);
       allStop();
       countSTART ++;
       break;
     }
-    Serial.println("Finish Setup");
+    
   }
+  Serial.println("Finish Setup");
 }
 
 //------------------------------------------------------------Void Loop--------------------------------------------------------------------------------
 
 //run functions in a loop
 void loop() {
+  /*
   if(digitalRead(plat_butt) == LOW){
-    leftStep(L, s);
+    rightSTART();
     //Serial.println("Forward");
   }
   else
   {
-    rightStep(R, s);
+    allStop();
     //Serial.println("Backward");
   }
-  
+  */
   
   //CALLING BUTTON LOGICS
+  /*
+  Serial.print(cONOFF);
+  Serial.print(",");
+  Serial.print(pONOFF);
+  Serial.print(",");
+  Serial.print(state);
+  Serial.print(",");
+  Serial.print(myStepper1.distanceToGo());
+  
+  Serial.println();
+  */
   /*
   if (digitalRead(conv_butt) == LOW) {  
     cONOFF = true;
     //Serial.println("cONOFF = true");
   }
 
-  if ( digitalRead(plat_butt) == LOW ) {
+  if ( digitalRead(plat_butt) == LOW) {
     pONOFF = true;
     //Serial.println("pONOFF = true");
   }
 
   //IF BOTH BUTTONS ARE PRESSED
-  if (digitalRead(conv_butt) == HIGH && digitalRead(plat_butt) == HIGH) {
+  if (digitalRead(conv_butt) == LOW && digitalRead(plat_butt) == LOW) {
     allStop();
     cONOFF = false;
     pONOFF = false;
@@ -219,11 +228,10 @@ void loop() {
       myStepper2.setCurrentPosition(0);
       state ++;
       pONOFF = false;
-      
     }
-    Serial.println("forwardStep, set to zero for stepper 1 and 2");
+    //Serial.println("forwardStep, set to zero for stepper 1 and 2");
   }
- 
+  /*
   else if (pONOFF == true && state == 1) {         //MOVE BACKWARDS
     backwardStep(B, s);
     beltStep(c);
