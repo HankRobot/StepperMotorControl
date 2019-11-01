@@ -177,7 +177,6 @@ void setup() {
 
 //run functions in a loop
 void loop() {
-  rightStep(R, s);
   /*
   if(digitalRead(plat_butt) == LOW){
     rightSTART();
@@ -202,7 +201,7 @@ void loop() {
   
   Serial.println();
   */
-  /*
+  
   if (digitalRead(conv_butt) == LOW) {  
     cONOFF = true;
     //Serial.println("cONOFF = true");
@@ -323,5 +322,4 @@ void loop() {
     cONOFF = false;
     //Serial.println("MISC5");
   }
-  */
 }
