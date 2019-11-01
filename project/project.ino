@@ -37,7 +37,7 @@ bool ySTART = false;     //Digital Mode for Vertical Positioning of Platform
 
 //ARBITRARY INCREMENTS (to set conditions)
 int state = 0;        //Increment for Platform Movement DURING RUN
-int countSTART = 0;   //Increment for Platform Movement WHEN REPOSITIONING
+int countSTART = 1;   //Increment for Platform Movement WHEN REPOSITIONING
 int nick = 1;         //Increment for FRONT TO LEFT Movement
 
 //----------------------------------------------------STEPPER MOTOR FUNCTIONS---------------------------------------------------------
@@ -201,7 +201,7 @@ void loop() {
   
   Serial.println();
   */
-  /*
+  
   if (digitalRead(conv_butt) == LOW) {  
     cONOFF = true;
     //Serial.println("cONOFF = true");
@@ -209,7 +209,7 @@ void loop() {
 
   if ( digitalRead(plat_butt) == LOW) {
     pONOFF = true;
-    //Serial.println("pONOFF = true");
+    Serial.println(state);
   }
 
   //IF BOTH BUTTONS ARE PRESSED
@@ -231,7 +231,7 @@ void loop() {
     }
     //Serial.println("forwardStep, set to zero for stepper 1 and 2");
   }
-  /*
+  
   else if (pONOFF == true && state == 1) {         //MOVE BACKWARDS
     backwardStep(B, s);
     beltStep(c);
@@ -322,5 +322,4 @@ void loop() {
     cONOFF = false;
     //Serial.println("MISC5");
   }
-  */
 }
