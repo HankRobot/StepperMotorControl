@@ -7,12 +7,15 @@ void setup(){
 }
 
 void loop(){
+    myStepper1.setSpeed(-1000);
+    myStepper1.runSpeed();
+    /*
     // Set the current position to 0:
     myStepper1.setCurrentPosition(0);
     // Run the motor forward at 200 steps/second until the motor reaches 400 steps (2 revolutions):
     while(myStepper1.currentPosition() != 400)
     {
-        myStepper1.setSpeed(200);
+        myStepper1.setSpeed(1000);
         myStepper1.runSpeed();
     }
     delay(1000);
@@ -21,7 +24,7 @@ void loop(){
     // Run the motor backwards at 600 steps/second until the motor reaches -200 steps (1 revolution):
     while(myStepper1.currentPosition() != -200) 
     {
-        myStepper1.setSpeed(-600);
+        myStepper1.setSpeed(-1000);
         myStepper1.runSpeed();
     }
     delay(1000);
@@ -30,8 +33,9 @@ void loop(){
     // Run the motor forward at 400 steps/second until the motor reaches 600 steps (3 revolutions):
     while(myStepper1.currentPosition() != 600)
     {
-        myStepper1.setSpeed(400);
+        myStepper1.setSpeed(1000);
         myStepper1.runSpeed();
     }
     delay(3000);
+    */
 }

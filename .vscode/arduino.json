@@ -2,5 +2,5 @@
     "board": "arduino:avr:uno",
     "programmer": "AVR ISP",
     "port": "COM3",
-    "sketch": "stepperacceltest/stepperacceltest.ino"
+    "sketch": "project/project.ino"
 }

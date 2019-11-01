@@ -85,9 +85,9 @@ void beltStep(int c) {
 //to move the motors forward
 void forwardStep(int F, int s) {
   myStepper1.moveTo(F);
-  myStepper2.moveTo(F);
+  myStepper2.moveTo(-F);
   myStepper1.setSpeed(s);
-  myStepper2.setSpeed(s);
+  myStepper2.setSpeed(-s);
   myStepper1.run();
   myStepper2.run();
 }
@@ -95,9 +95,9 @@ void forwardStep(int F, int s) {
 // to move the motors back
 void backwardStep(int B, int s) {
   myStepper1.moveTo(-B);
-  myStepper2.moveTo(-B);
+  myStepper2.moveTo(B);
   myStepper1.setSpeed(-s);
-  myStepper2.setSpeed(-s);
+  myStepper2.setSpeed(s);
   myStepper1.run();
   myStepper2.run();
 }
@@ -172,6 +172,7 @@ void setup() {
       countSTART ++;
       break;
     }
+    Serial.println("Finish Setup");
   }
 }
 
@@ -179,13 +180,27 @@ void setup() {
 
 //run functions in a loop
 void loop() {
+  if(digitalRead(plat_butt) == LOW){
+    forwardStep(F_start, startspeed);
+    //Serial.println("Forward");
+  }
+  else
+  {
+    backwardStep(B, startspeed);
+    //Serial.println("Backward");
+  }
+  
+  
   //CALLING BUTTON LOGICS
-  if (digitalRead(conv_butt) == HIGH) {
+  /*
+  if (digitalRead(conv_butt) == HIGH) {  
     cONOFF = true;
+    //Serial.println("cONOFF = true");
   }
 
-  if (digitalRead(plat_butt) == HIGH ) {
+  if ( digitalRead(plat_butt) == HIGH ) {
     pONOFF = true;
+    //Serial.println("pONOFF = true");
   }
 
   //IF BOTH BUTTONS ARE PRESSED
@@ -193,6 +208,7 @@ void loop() {
     allStop();
     cONOFF = false;
     pONOFF = false;
+    //Serial.println("cONOFF = false and pONOFF = false");
   }
 
   //IF PLATFORM BUTTON IS PRESSED (PRESS 7 TIMES TO COMPLETE CYCLE)
@@ -203,9 +219,11 @@ void loop() {
       myStepper2.setCurrentPosition(0);
       state ++;
       pONOFF = false;
+      
     }
+    Serial.println("forwardStep, set to zero for stepper 1 and 2");
   }
-
+ 
   else if (pONOFF == true && state == 1) {         //MOVE BACKWARDS
     backwardStep(B, s);
     beltStep(c);
@@ -214,7 +232,9 @@ void loop() {
       myStepper2.setCurrentPosition(0);
       state ++;
       pONOFF = false;
+      
     }
+    //Serial.println("backwardstep, set to zero for stepper 1 and 2");
   }
 
   else if (pONOFF == true && state == 2) {    //MOVE FORWARD
@@ -237,6 +257,7 @@ void loop() {
         pONOFF = false;
       }
     }
+    //Serial.println("MISC");
   }
 
   else if (pONOFF == true && state == 3) {    //MOVE BACKWARD
@@ -248,6 +269,7 @@ void loop() {
       state ++;
       pONOFF = false;
     }
+    //Serial.println("MISC2");
   }
 
   else if (pONOFF == true && state == 4) {    //MOVE FORWARD
@@ -269,6 +291,7 @@ void loop() {
         pONOFF = false;
       }
     }
+    //Serial.println("MISC3");
   }
 
   else if (pONOFF == true && state == 5) {    //MOVE BACKWARD
@@ -280,6 +303,7 @@ void loop() {
       state ++;
       pONOFF = false;
     }
+    //Serial.println("MISC4");
   }
 
   //MOVE CONVEYOR BELT WHEN PRESSED
@@ -288,6 +312,7 @@ void loop() {
     //    if (myStepper3.distanceToGo() == 0) {
     //      myStepper3.setCurrentPosition(0);
     cONOFF = false;
-
+    //Serial.println("MISC5");
   }
+  */
 }
