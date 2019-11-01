@@ -177,31 +177,6 @@ void setup() {
 
 //run functions in a loop
 void loop() {
-  /*
-  if(digitalRead(plat_butt) == LOW){
-    rightSTART();
-    //Serial.println("Forward");
-  }
-  else
-  {
-    allStop();
-    //Serial.println("Backward");
-  }
-  */
-  
-  //CALLING BUTTON LOGICS
-  /*
-  Serial.print(cONOFF);
-  Serial.print(",");
-  Serial.print(pONOFF);
-  Serial.print(",");
-  Serial.print(state);
-  Serial.print(",");
-  Serial.print(myStepper1.distanceToGo());
-  
-  Serial.println();
-  */
-  
   if (digitalRead(conv_butt) == LOW) {  
     cONOFF = true;
     //Serial.println("cONOFF = true");
