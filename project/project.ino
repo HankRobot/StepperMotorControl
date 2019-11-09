@@ -7,7 +7,7 @@ AccelStepper myStepper2(1, 4, 5); //Platform Stepper
 AccelStepper myStepper3(1, 6, 7); //Conveyor Belt Stepper
 
 //STEPPER MOTOR SPEEDS
-int s = 1000; //Platform Motor Speed
+int s = 2000; //Platform Motor Speed
 int c = -115;  //Conveyor Belt Motor Speed
 int startspeed = 3500; //Positioning Speed
 int c_fill = -300; //Speed to fill fibre on conveyor belt
@@ -133,6 +133,7 @@ void setup() {
   pinMode (9, INPUT);
   pinMode (10, INPUT);
   pinMode (11, INPUT);
+  pinMode (13, OUTPUT);
   //Setting Max Speed of Stepper Motors
   myStepper1.setMaxSpeed(4000);
   myStepper2.setMaxSpeed(4000);
@@ -177,13 +178,11 @@ void setup() {
 
 //run functions in a loop
 void loop() {
-  Serial.println(cONOFF);
   if (digitalRead(conv_butt) == LOW) {  
     cONOFF = true;
   }
   if ( digitalRead(plat_butt) == LOW) {
     pONOFF = true;
-    Serial.println(state);
   }
 
   //IF BOTH BUTTONS ARE PRESSED
@@ -283,7 +282,13 @@ void loop() {
 
   //MOVE CONVEYOR BELT WHEN PRESSED
   if (cONOFF == true) {
+    digitalWrite(13,HIGH);
     beltFill(c_fill);
     //cONOFF = false;
   }
+  else
+  {
+    digitalWrite(13,LOW);
+  }
+  
 }
