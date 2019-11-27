@@ -75,7 +75,7 @@ void beltFill(int c_fill) {
   myStepper3.runSpeed();
 }
 
-//to move conveyor belt
+//to move conveyor belt 
 void beltStep(int c) {
   myStepper3.moveTo(conveyor_mv);
   myStepper3.setSpeed(c);
@@ -181,6 +181,7 @@ void loop() {
   if (digitalRead(conv_butt) == LOW) {  
     cONOFF = true;
   }
+  
   if ( digitalRead(plat_butt) == LOW) {
     pONOFF = true;
   }
@@ -201,7 +202,7 @@ void loop() {
       state ++;
       pONOFF = false;
     }
-  }
+  } 
   
   else if (pONOFF == true && state == 1) {         //MOVE BACKWARDS
     backwardStep(B, s);
@@ -282,7 +283,7 @@ void loop() {
 
   //MOVE CONVEYOR BELT WHEN PRESSED
   if (cONOFF == true) {
-    digitalWrite(13,HIGH);
+    digitalWrite(13,HIGH); 
     beltFill(c_fill);
     //cONOFF = false;
   }
