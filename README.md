@@ -13,7 +13,8 @@ This project is focused on deploying Dr Gan's carbon fibre machine only on Ardui
 
 # Contribute
 1. Project is fixed, will be working on fixing shield.
-2. Real problem was power source insufficient as each servos need 1A, so best case is 3 servos connected with 3 different power supply
+2. Motor Shield version is made as well.
+3. Real problem was power source insufficient as each servos need 1A, so best case is 3 servos connected with 3 different power supply
 
 #This project was previously done by Wo Yew Ben and Wei Hong, I'm just fixing it.
 
