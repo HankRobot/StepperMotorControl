@@ -195,6 +195,7 @@ void loop() {
 
   //IF PLATFORM BUTTON IS PRESSED (PRESS 7 TIMES TO COMPLETE CYCLE)
   if (pONOFF == true && state == 0) {              //MOVE FORWARDS
+    myStepper3.disableOutputs();
     forwardStep(F_start, startspeed);
     if (myStepper1.distanceToGo() == 0) {
       myStepper1.setCurrentPosition(0);
@@ -206,6 +207,7 @@ void loop() {
   } 
   
   else if (pONOFF == true && state == 1) {         //MOVE BACKWARDS
+    myStepper3.enableOutputs();
     backwardStep(B, s);
     beltStep(c);
     if (myStepper1.distanceToGo() == 0) {
@@ -218,6 +220,7 @@ void loop() {
 
   else if (pONOFF == true && state == 2) {    //MOVE FORWARD
     if (nick == 1) {
+      myStepper3.disableOutputs();
       forwardStep(F, s);
       //beltStep(c);
       if (myStepper1.distanceToGo() == 0) {
@@ -240,6 +243,7 @@ void loop() {
   
 
   else if (pONOFF == true && state == 3) {    //MOVE BACKWARD
+    myStepper3.enableOutputs();
     backwardStep(B, s);
     beltStep(c);
     if (myStepper1.distanceToGo() == 0) {
@@ -252,6 +256,7 @@ void loop() {
 
   else if (pONOFF == true && state == 4) {    //MOVE FORWARD
     if (nick == 3) {
+      myStepper3.disableOutputs();
       forwardStep(F, s);
       //beltStep(c);
       if (myStepper1.distanceToGo() == 0) {
@@ -272,6 +277,7 @@ void loop() {
   }
 
   else if (pONOFF == true && state == 5) {    //MOVE BACKWARD
+    myStepper3.enableOutputs();
     backwardStep(F_start, s);
     beltStep(c);
     if (myStepper1.distanceToGo() == 0) {
