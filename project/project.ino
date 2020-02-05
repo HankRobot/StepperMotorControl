@@ -171,7 +171,7 @@ void setup() {
     }
     
   }
-  Serial.println("Finish Setup");
+  
 }
 
 //------------------------------------------------------------Void Loop--------------------------------------------------------------------------------
@@ -194,13 +194,14 @@ void loop() {
   }
 
   //IF PLATFORM BUTTON IS PRESSED (PRESS 7 TIMES TO COMPLETE CYCLE)
-  if (pONOFF == true && state == 0) {         //MOVE BACKWARDS
+  if (pONOFF == true && state == 0) {              //MOVE FORWARDS
     forwardStep(F_start, startspeed);
     if (myStepper1.distanceToGo() == 0) {
       myStepper1.setCurrentPosition(0);
       myStepper2.setCurrentPosition(0);
       state ++;
       pONOFF = false;
+      Serial.println("State 1 done!");
     }
   } 
   
@@ -218,7 +219,7 @@ void loop() {
   else if (pONOFF == true && state == 2) {    //MOVE FORWARD
     if (nick == 1) {
       forwardStep(F, s);
-      beltStep(c);
+      //beltStep(c);
       if (myStepper1.distanceToGo() == 0) {
         myStepper1.setCurrentPosition(0);
         myStepper2.setCurrentPosition(0);
@@ -252,7 +253,7 @@ void loop() {
   else if (pONOFF == true && state == 4) {    //MOVE FORWARD
     if (nick == 3) {
       forwardStep(F, s);
-      beltStep(c);
+      //beltStep(c);
       if (myStepper1.distanceToGo() == 0) {
         myStepper1.setCurrentPosition(0);
         myStepper2.setCurrentPosition(0);
@@ -280,7 +281,7 @@ void loop() {
       pONOFF = false;
     }
   }
-
+  /*
   //MOVE CONVEYOR BELT WHEN PRESSED
   if (cONOFF == true) {
     digitalWrite(13,HIGH); 
@@ -291,5 +292,5 @@ void loop() {
   {
     digitalWrite(13,LOW);
   }
-  
+  */
 }
